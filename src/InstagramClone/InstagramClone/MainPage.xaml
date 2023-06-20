@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InstagramClone.MainPage"
+             Title="{Binding UserProfile.UserName}"            
+>
+
+    <ScrollView>
+        <!-- Content -->
+        <StackLayout >
+
+            <StackLayout Margin="10, 0, 0, 0">
+
+                <VerticalStackLayout>
+                    <Grid ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <!--TODO: 91 - xaml key integer -->
+                        <Image Grid.Column="0" Source="https://placekitten.com/g/200/300"
+                          WidthRequest="91"
+                          HeightRequest="91"
+                          Aspect="AspectFill">
+                            <Image.Clip>
+                                <EllipseGeometry RadiusX="45" RadiusY="45" Center="45,45"/>
+                            </Image.Clip>
+                        </Image>
+
+
+                        <Grid HeightRequest="50" Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                                <Label VerticalOptions="Center" HorizontalOptions="Center" Text="100" FontSize="Large" FontAttributes="Bold"></Label>
+                                <Label VerticalOptions="Center" HorizontalOptions="Center" Text="Posts"></Label>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center">
+                                <Label VerticalOptions="Center" HorizontalOptions="Center" Text="1,1M" FontSize="Large" FontAttributes="Bold"></Label>
+                                <Label VerticalOptions="Center" HorizontalOptions="Center" Text="Followers"></Label>
+                            </StackLayout>
+                            <StackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center">
+                                <Label VerticalOptions="Center" HorizontalOptions="Center" Text="10" FontSize="Large" FontAttributes="Bold"></Label>
+                                <Label VerticalOptions="Center" HorizontalOptions="Center" Text="Follow"></Label>
+                            </StackLayout>
+                        </Grid>
+
+                    </Grid>
+
+
+                    <Label FontAttributes="Bold" FontSize="Large" Text="{Binding UserProfile.FrontName}"></Label>
+                    <Label Text="{Binding UserProfile.Bio}"></Label>
+                    <!--TODO: https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/label#create-a-hyperlink-->
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding UserProfile.Link}"
+                                TextColor="Blue">
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <VerticalStackLayout Grid.Column="1">
+                        <Label Text="{Binding UserProfile.UserName}" FontSize="Large"  FontAttributes="Bold"
+                           Margin="0, 0, 0, 10"
+                           />
+                        <HorizontalStackLayout>
+                            <!-- TODO: follow button color-->
+                            <Button HorizontalOptions="Center" BackgroundColor="DodgerBlue" Text="Follow" Margin="0,0,8,0">
+
+                            </Button>
+                            <!-- TODO: send message text bold-->
+                            <Button HorizontalOptions="Center" BackgroundColor="WhiteSmoke" TextColor="Black" Text="Send Message" FontAttributes="Bold" ></Button>
+                        </HorizontalStackLayout>
+
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+
+              
+
+
+
+            </StackLayout>
+
+              <!--TODO: Navigation View - TAB BAR as sticky header-->
+                <CollectionView ItemsSource="{Binding TopStories}"
+                            ItemsLayout="HorizontalList"
+                            HeightRequest="100"
+                            Margin="0,8,0,8"
+                            HorizontalScrollBarVisibility="Never">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout HorizontalOptions="Center">
+                                <Image Source="{Binding ImagePath}"
+                                      WidthRequest="66"
+                                      HeightRequest="66"
+                                      Aspect="AspectFill"
+                                      Margin="16,0,8,0"
+                               >
+                                    <Image.Clip>
+                                        <EllipseGeometry RadiusX="33" RadiusY="33"
+                                                 Center="33,33"/>
+                                    </Image.Clip>
+                                </Image>
+                                <Label HorizontalOptions="Center" Margin="8,0,0,0" VerticalOptions="Center" Text="{Binding Text}"></Label>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+
+
+            <!-- TODO SCROLLABLE TO GRID LIST -->
+            <StackLayout>
+                <CollectionView ItemsSource="{Binding List}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout
+                         Orientation="Vertical"
+                         Span="3"
+                         HorizontalItemSpacing="4"
+                         VerticalItemSpacing="4"
+                        />
+
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Aspect="AspectFill" HeightRequest="130" WidthRequest="130" Source="{Binding ImagePath}"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+
+            </StackLayout>
+
+
+        </StackLayout>
+
+        <!-- User Profile Infos -->
+
+
+
+    </ScrollView>
+
+
+</ContentPage>
+
