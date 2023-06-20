@@ -1,3 +1,3 @@
 ﻿## .Net MAUI Instagram Clone 
 
-![ss-profile](ss/ss-profile.png)
+![ss-profile](screenshots/ss-profile.png)
